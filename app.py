@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return render_template("home.html")
-    
+
 # see transactions
 @app.route('/transactions')
 def see_transactions():
