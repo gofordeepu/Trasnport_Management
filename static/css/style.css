@@ -2,3 +2,11 @@
    height: 3em;
    width: 3em;
 }
+
+header{
+   margin-bottom: 5%;
+}
+
+#addT{
+   margin:5% auto 5% auto
+}
