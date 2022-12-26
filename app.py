@@ -1,4 +1,10 @@
 from flask import Flask,render_template,request
+from datetime import datetime
+import sqlite3
+# connection to sqlite3
+def db_connection():
+    con=sqlite3.connect("transport.db")
+    return con
 
 app = Flask(__name__)
 # homepage
@@ -9,16 +15,31 @@ def home():
 # see transactions
 @app.route('/transactions')
 def see_transactions():
-    return render_template("see_transactions.html")
+    return render_template("see_transactions.html") 
+
 
 # add transactions
 @app.route('/addtransactions',methods=['GET','POST'])
 def add_transactions():
     if request.method=='POST':
-        print(request.form['company'])
-        return render_template('add_transactions.html')
+        status=''
+        company=request.form['company']
+        sAdd=request.form['sAdd']
+        dAdd=request.form['dAdd']
+        sDate = str(request.form['sDate'])
+        vehicle=request.form['vehicle']
+        con=db_connection()
+        cur=con.cursor()
+        cur.execute("""insert into transactions  """)
+        print(company,sAdd,dAdd,vehicle,sDate)       
+        return render_template('add_transactions.html',status=status)
     else:
-        return render_template("add_transactions.html")
+        con=db_connection()
+        cur=con.cursor()
+        result=cur.execute("select * from vehicles")
+        options=dict(result.fetchall())
+        con.close()  
+        return render_template("add_transactions.html",options=options.values())
 
 # see vehicals
 @app.route('/vehicals')
