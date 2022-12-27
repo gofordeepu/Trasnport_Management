@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Management System</title>
+    <link rel="icon" href="../static/imgs/delivery-truck.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<!-- header -->
+{% include 'header.html' %}
+<h2 style="margin-left:10%;margin-bottom:5%" class="font-medium leading-tight text-3xl mt-0 mb-2 text-gray-600">You are viewing 5 latest Transactions:</h2>
+<form action="/download" method="post">
+<div class="filter" style="display: flex;">
+    <div class="from" style="margin-left:10%;">
+        <label for="from">From</label>
+        <input name="from" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-black-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="Date" placeholder="select" required>
+    </div>
+    <div class="to" style="margin-left:3%;">
+        <label for="to">To</label>
+        <input name="to" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-black-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="Date" placeholder="select" required>
+    </div>
+    <div class="see_transactions" style="margin-left:3%;margin-top:1.3%">
+        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+            <span>Download</span>
+          </button>
+    </div>
+</div>
+</form>
+<!-- section -->
+
+<div class="flex flex-col" style="margin-left: 10%;margin-right:10%;margin-bottom:5%">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-4 inline-block min-w-full items-center sm:px-6 lg:px-8 ">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-center">
+            <thead class="border-b bg-gray-800">
+              <tr>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Transaction Id
+                </th>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Company Name
+                </th>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Vehicle Number
+                </th>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Date
+                </th>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Source Address
+                </th>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Destination Address
+                </th>
+              </tr>
+            </thead class="border-b">
+            <tbody>
+            {% for items in tdata %}
+              <tr class="bg-white border-b">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{items[0]}}</td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{items[1]}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{items[2]}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{items[3]}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{items[4]}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{items[5]}}
+                </td>
+              </tr class="bg-white border-b">
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- footer -->
+{% include 'footer.html' %}
+</body>
+</html>

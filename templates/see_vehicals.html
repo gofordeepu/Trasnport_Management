@@ -11,9 +11,37 @@
 <body>
 <!-- header -->
 {% include 'header.html' %}
-
 <!-- section -->
-
+<div class="flex flex-col" style="margin-left: 10%;margin-right:10%;margin-bottom:5%">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-4 inline-block min-w-full items-center sm:px-6 lg:px-8 ">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-center">
+            <thead class="border-b bg-gray-800">
+              <tr>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Vehicle Id
+                </th>
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  Vehicle Number
+                </th>
+              </tr>
+            </thead class="border-b">
+            <tbody>
+            {% for items in vehicles %}
+              <tr class="bg-white border-b">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{items[0]}}</td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{items[1]}}
+                </td>
+              </tr class="bg-white border-b">
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- footer -->
 {% include 'footer.html' %}
 </body>
